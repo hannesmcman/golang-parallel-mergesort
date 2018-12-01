@@ -67,4 +67,3 @@ func merge(leftList, rightList []int) []int {
 	}
 	return slice
 }
-
