@@ -4,7 +4,9 @@
 
  1. Clone the repo
  2. If on thing2, add the following to the end of `~/.profile`:
-        export PATH=$PATH:/usr/local/go/bin
+
+    ```export PATH=$PATH:/usr/local/go/bin```
+
  3. `cd golang-parallel-mergesort`
  4. `go run ./mergesort/main.go` or `go run ./mergesort_channels/main.go`
 
