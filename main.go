@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"time"
 	"log"
+	"runtime"
 )
 
 
@@ -12,7 +13,7 @@ func main() {
 
 	log.Print("This is a parallel mergesort written in go")
 	log.Print("Run the included test to get see some statistics")
-
+	log.Printf("Number of cpus: %d", runtime.NumCPU())
 	numberOfItems := 1000000;
 	threshold := 10000;
 
