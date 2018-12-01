@@ -6,14 +6,17 @@ import (
 	"time"
 	"log"
 	"runtime"
+	"fmt"
 )
 
 
 func main() {
 
-	log.Print("This is a parallel mergesort written in go")
-	log.Print("Run the included test to get see some statistics")
-	log.Printf("Number of cpus: %d", runtime.NumCPU())
+	var nCPU int
+  fmt.Scanf("%d", &nCPU)
+	log.Printf("Number of cpus: %d", nCPU)
+	runtime.GOMAXPROCS(nCPU)
+
 	numberOfItems := 1000000;
 	threshold := 10000;
 
