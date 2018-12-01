@@ -4,7 +4,6 @@ import (
 	"./mergesort"
 	"math/rand"
 	"time"
-	"log"
 	"runtime"
 	"fmt"
 )
@@ -13,8 +12,9 @@ import (
 func main() {
 
 	var nCPU int
+	fmt.Print("How many CPUs? ")
   fmt.Scanf("%d", &nCPU)
-	log.Printf("Number of cpus: %d", nCPU)
+	fmt.Printf("Number of cpus: %d \n", nCPU)
 	runtime.GOMAXPROCS(nCPU)
 
 	numberOfItems := 1000000;
@@ -25,10 +25,10 @@ func main() {
 	start := time.Now()
 	mergesort.MergeSort(items, threshold)
 
-	log.Printf("Took %s to sort %d items (with threshold %d).", time.Since(start), numberOfItems, threshold)
+	fmt.Printf("Took %s to sort %d items (with threshold %d).\n", time.Since(start), numberOfItems, threshold)
 
 	start = time.Now()
 	mergesort.MergeSort(items, -1)
 
-	log.Printf("Took %s to sort %d items (synchronous).", time.Since(start), numberOfItems)
+	fmt.Printf("Took %s to sort %d items (synchronous).\n", time.Since(start), numberOfItems)
 }
