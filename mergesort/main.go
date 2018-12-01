@@ -1,7 +1,7 @@
 package main
 
 import (
-	"./mergesort"
+	"./lib"
 	"math/rand"
 	"time"
 	"runtime"
