@@ -1,9 +1,4 @@
-package main
-
-import (
-    // "fmt"
-    "math/rand"
-    )
+package mergesort_channel_parallel
 
 func Merge(ldata []int, rdata []int) (result []int) {
     result = make([]int, len(ldata) + len(rdata))
@@ -29,33 +24,25 @@ func Merge(ldata []int, rdata []int) (result []int) {
     return
 }
 
-func MergeSort(data []int) (r []int){
+func MergeSort(data []int, r chan []int) {
     if len(data) == 1 {
-        r = data
+        r <- data
         return
     }
 
+    leftChan := make(chan []int)
+    rightChan := make(chan []int)
     middle := len(data)/2
 
-    ldata :=  MergeSort(data[:middle])
-    rdata :=  MergeSort(data[middle:])
+    go MergeSort(data[:middle], leftChan)
+    go MergeSort(data[middle:], rightChan)
 
-    r = Merge(ldata, rdata)
-    return 
+    ldata := <-leftChan
+    rdata := <-rightChan
+
+    close(leftChan)
+    close(rightChan)
+    r <- Merge(ldata, rdata)
+    return
 }
 
-func main() {
-    // s := []int{22, 8, 3, 31, 4, 2, 42, 1, 16, 6, 11, 25, 9, 8, 10, 12, 18, 14, 7, 15}
-
-    numberOfItems := 1000000;
-
-    s := rand.Perm(numberOfItems)
-
-    MergeSort(s)
-    
-    //Uncomment this to print the contents: 
-
-    // for _,v := range result {
-    //     fmt.Println(v)
-    // }
-}
